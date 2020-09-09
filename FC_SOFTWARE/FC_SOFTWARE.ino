@@ -3,10 +3,6 @@
 #include "printf.h"
 #include "RF24.h"
 #include "RF24_config.h"
-#include <PinChangeInterrupt.h>
-#include <PinChangeInterruptBoards.h>
-#include <PinChangeInterruptPins.h>
-#include <PinChangeInterruptSettings.h>
 #include <SPI.h>
 #include <Servo.h>
 /*------------------- General Variables-------------------*/
@@ -209,7 +205,7 @@ void radio_Init(){
   rfRadio.startListening();
   pinMode(pinInt, INPUT);
   rfRadio.printDetails();
-  attachInterrupt(digitalPinToInterrupt(pinInt), rf_Interrupt, CHANGE); //Create interrupt for pin 9 on falling edge
+  attachInterrupt(digitalPinToInterrupt(pinInt), rf_Interrupt, CHANGE); //Create interrupt for pin 9 on falling or rising edge
 }
   /* Radio Interrupt Function */
 void rf_Interrupt(){
